@@ -1,0 +1,209 @@
+{
+    "arapahoebasinskiarea": {
+        "resortName": "Arapahoe Basin Ski Area",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 1,
+        "liftTotal": 9,
+        "baseDepth": 18,
+        "topDepth": 18
+    },
+    "aspen/snowmass": {
+        "resortName": "Aspen / Snowmass",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 40,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "beavercreek": {
+        "resortName": "Beaver Creek",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 24,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "breckenridge": {
+        "resortName": "Breckenridge",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 34,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "cooper": {
+        "resortName": "Cooper",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 4,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "coppermountainresort": {
+        "resortName": "Copper Mountain Resort",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 24,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "crestedbuttemountainresort": {
+        "resortName": "Crested Butte Mountain Resort",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 15,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "echomountain": {
+        "resortName": "Echo Mountain",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 3,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "eldoramountainresort": {
+        "resortName": "Eldora Mountain Resort",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 10,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "howelsenhill": {
+        "resortName": "Howelsen Hill",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 4,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "keystone": {
+        "resortName": "Keystone",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 20,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "loveland": {
+        "resortName": "Loveland",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 1,
+        "liftTotal": 11,
+        "baseDepth": 18,
+        "topDepth": 18
+    },
+    "monarchmountain": {
+        "resortName": "Monarch Mountain",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 6,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "powderhorn": {
+        "resortName": "Powderhorn",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 5,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "purgatory": {
+        "resortName": "Purgatory",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 12,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "silvertonmountain": {
+        "resortName": "Silverton Mountain",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 1,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "skigranbyranch": {
+        "resortName": "Ski Granby Ranch",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 5,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "steamboat": {
+        "resortName": "Steamboat",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 18,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "sunlightmountainresort": {
+        "resortName": "Sunlight Mountain Resort",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 3,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "telluride": {
+        "resortName": "Telluride",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 19,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "vail": {
+        "resortName": "Vail",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 31,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "winterparkresort": {
+        "resortName": "Winter Park Resort",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 0,
+        "liftTotal": 25,
+        "baseDepth": 0,
+        "topDepth": 0
+    },
+    "wolfcreekskiarea": {
+        "resortName": "Wolf Creek Ski Area",
+        "threeDayTotal": 0,
+        "lastDayTotal": 0,
+        "liftNum": 4,
+        "liftTotal": 10,
+        "baseDepth": 18,
+        "topDepth": 22
+    }
+}
