@@ -3,10 +3,8 @@ console.log("____ Bot is running ____");
 require('dotenv').load();
 
 // const request = require('request');
-
-//discord stuff
+// const FP = require('functional-promise');
 const fs = require('fs');
-const FP = require('functional-promise');
 const Datastore = require('nedb');
 const fetch = require('node-fetch');
 const TOKEN = process.env.TOKEN;
@@ -20,8 +18,8 @@ const commandLib = fs.readdirSync('./commands').filter(f => f.endsWith('.js'));
 for (const file of commandLib) {
 	const command = require(`./commands/${file}`);
 	bot.commands.set(command.name, command);
-}
-//server stuff
+};
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -29,28 +27,11 @@ const cors = require("cors");
 
 var WEATHERDATA;
 
-
-//middleware
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(cors());
 
-////////////////////////////////////////////
 
-
-////////////////////////////////////////////
-
-// bot.on('message', function(message) {
-// 	if (message.author == bot.user) {
-// 		return
-// 	} else {
-//   	if (message.content === '!commands') {
-//     message.reply("!latest");
-//     message.reply("!help");
-//     message.reply("!twitter");
-//   	}
-// 	}
-// });
 bot.on('message', function(message) {
 	const prefix = '!';
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -59,19 +40,13 @@ bot.on('message', function(message) {
 
 	if (!bot.commands.has(command)) return;
 
-	// if (!args.length) {
-	// 	return message.channel.send(`You didn't provide any arguments,
-	// 				${message.author}!`);
-	// }
-
 	var superObj = [];
-	var selection = '';
+	var selection;
 
 	if (command == "snow") {
 		selection = args[0];
 		// fetchSnowData();
-		// getState()
-	}
+	};
 
 	function fetchSnowData() {
 		console.log("fetching snow data...");
@@ -80,21 +55,13 @@ bot.on('message', function(message) {
 		.then(res => res.json())
 		.then(sortWeather)
 		.catch()
-	}
+	};
 
 	function sortWeather(res) {
-		console.log("sortWeahter method, takes in fetch response, then saveState and getState are called");
-		// filter for the arg used...
-		// let resorts = res.rows.map((row) => {
-	  //   // return row['resort_name'].toLowerCase().replace(/ /g,'') == selection
-		// 	 return row['resort_name'].toLowerCase().replace(/ /g,'')
-	  // });
 		let resorts = res.rows;
 	  for (var i = 0; i < resorts.length; i++) {
 			let singleResortName = resorts[i].resort_name.toLowerCase().replace(/ /g,'');
-			// console.log(singleResortName);
 			resObj = {};
-			// console.log("single resort...: ", superObj);
 			resObj.resortName = singleResortName;
 	    resObj.threeDayTotal = Math.round(resorts[i].pastSnow.sum3/2.54 || 0);
 	    resObj.lastDayTotal = Math.round(resorts[i].pastSnow.snow0day/2.54);
@@ -104,20 +71,15 @@ bot.on('message', function(message) {
 	    resObj.baseDepth = Math.round(resorts[i].snowcone.base_depth_cm/2.54);
 	    resObj.topDepth = Math.round(resorts[i].snowcone.top_depth_cm/2.54);
 			superObj.push(resObj);
-	  	}
+	  }
 		console.log("state being saved...");
 		saveState();
-		// getState();
-		// findResort();
 	};
-
-
 
 	function saveState() {
 		console.log("saveState function");
 		fs.writeFile('snowData-state.json', JSON.stringify(superObj, null, 4), function(err) {
 			console.log('File successfuly written!!!');
-			// setTimeout(saveState, superObj, 3600000);
 		});
 	}
 
@@ -131,21 +93,6 @@ bot.on('message', function(message) {
 		})
 	}
 
-	// function findResort() {
-	// 	fs.readFile('snowData-state.json', 'utf8', function(err, data) {
-	//
-	// 		let myObj = JSON.parse(data);
-	//
-	// 		for (var key in myObj) {
-	// 			if (key == selection) {
-	// 				console.log("it matches!!!!");
-	// 				WEATHERDATA = myObj[key];
-	// 			}
-	// 		}
-	// 		console.log("selected weather!! ", selection, WEATHERDATA);
-	// 	})
-	// }
-
 	if (command.args && !args.length) {
 		return message.channel.send(
 `You didn't provide any arguments,
@@ -158,39 +105,34 @@ Type ** !snow resorts ** or ** !resorts ** to see the list of resort commands \n
 	try {
 
 		if (command === 'snow') {
+			selection = args[0].toLowerCase();
 			const getFSData = async () => {
 				var snow = require('./snowData-state.json');
 				let resorts = snow.filter((obj) => {
-					console.log("args... ", args[0]);
-					console.log("selection... ", selection);
-					console.log("snow objects ", obj);
-					return (selection == obj.resortName)
+						return obj.resortName.includes(selection);
 				});
 				const snowData = await resorts[0];
+				console.log("input: ", selection);
+				console.log(snowData);
 				const mess = await bot.commands.get(command).execute(message, args, snowData)
 				return mess;
 				};
-
-				getFSData();
-
-
+			getFSData();
 		} else {
 			bot.commands.get(command).execute(message, args);
 		}
-
 	}
+
 	catch (error) {
 		console.error(error);
 		message.reply('there was an error with that command, BRO!');
 	}
-})
 
-
+});
 
 bot.login(TOKEN);
-
 
 const port = 3000;
 app.listen(port, () => {
   console.log('listening on port ', port);
-})
+});
