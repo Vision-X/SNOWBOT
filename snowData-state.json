@@ -1,8 +1,8 @@
 [
     {
         "resortName": "arapahoebasinskiarea",
-        "threeDayTotal": 5,
-        "lastDayTotal": 0,
+        "threeDayTotal": 7,
+        "lastDayTotal": 2,
         "liftNum": 1,
         "liftTotal": 9,
         "baseDepth": 18,
@@ -100,8 +100,8 @@
     },
     {
         "resortName": "loveland",
-        "threeDayTotal": 5,
-        "lastDayTotal": 0,
+        "threeDayTotal": 9,
+        "lastDayTotal": 4,
         "liftNum": 1,
         "liftTotal": 11,
         "baseDepth": 18,

@@ -104,16 +104,28 @@ Type ** !snow resorts ** or ** !resorts ** to see the list of resort commands \n
 
 	try {
 
-		if (command === 'snow') {
+		if (command === 'snow' && args[0].toLowerCase() != 'all') {
 			selection = args[0].toLowerCase();
 			const getFSData = async () => {
 				var snow = require('./snowData-state.json');
 				let resorts = snow.filter((obj) => {
+						console.log(obj.resortName);
 						return obj.resortName.includes(selection);
 				});
 				const snowData = await resorts[0];
-				console.log("input: ", selection);
-				console.log(snowData);
+				// console.log("input: ", selection);
+				// console.log(snowData);
+				const mess = await bot.commands.get(command).execute(message, args, snowData)
+				return mess;
+				};
+			getFSData();
+		} else if (command === 'snow' && args[0].toLowerCase() == 'all') {
+			selection = args[0].toLowerCase();
+			const getFSData = async () => {
+				var snow = require('./snowData-state.json');
+				const snowData = await snow;
+				// console.log("input: ", selection);
+				// console.log(snowData);
 				const mess = await bot.commands.get(command).execute(message, args, snowData)
 				return mess;
 				};
