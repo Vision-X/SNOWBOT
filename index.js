@@ -6,6 +6,7 @@ require('dotenv').load();
 
 //discord stuff
 const fs = require('fs');
+const FP = require('functional-promise');
 const Datastore = require('nedb');
 const fetch = require('node-fetch');
 const TOKEN = process.env.TOKEN;
@@ -63,11 +64,13 @@ bot.on('message', function(message) {
 	// 				${message.author}!`);
 	// }
 
-	var superObj = {};
-	var selection;
+	var superObj = [];
+	var selection = '';
+
 	if (command == "snow") {
 		selection = args[0];
-		fetchSnowData();
+		// fetchSnowData();
+		// getState()
 	}
 
 	function fetchSnowData() {
@@ -80,27 +83,31 @@ bot.on('message', function(message) {
 	}
 
 	function sortWeather(res) {
-  // let resorts = res.rows.map((row) => {
-  //   // return row['resort_name'].toLowerCase().replace(/ /g,'') == selection
-	// 	 return row['resort_name'].toLowerCase().replace(/ /g,'')
-  // });
-	let resorts = res.rows;
-  for (var i = 0; i < resorts.length; i++) {
-		let singleResortName = resorts[i].resort_name;
-		console.log(singleResortName);
-		resObj = {};
-		// console.log("single resort...: ", superObj);
-		resObj.resortName = singleResortName;
-    resObj.threeDayTotal = Math.round(resorts[i].pastSnow.sum3/2.54 || 0);
-    resObj.lastDayTotal = Math.round(resorts[i].pastSnow.snow0day/2.54);
-    resObj.liftNum =  (resorts[i].snowcone.lifts_open === null) ? 0 :
-											 resorts[i].snowcone.lifts_open;
-    resObj.liftTotal = resorts[i].resortProfile.num_lifts;
-    resObj.baseDepth = Math.round(resorts[i].snowcone.base_depth_cm/2.54);
-    resObj.topDepth = Math.round(resorts[i].snowcone.top_depth_cm/2.54);
-		superObj[singleResortName.toLowerCase().replace(/ /g,'')] = resObj;
-  	}
-		saveState(), getState();
+		console.log("sortWeahter method, takes in fetch response, then saveState and getState are called");
+		// filter for the arg used...
+		// let resorts = res.rows.map((row) => {
+	  //   // return row['resort_name'].toLowerCase().replace(/ /g,'') == selection
+		// 	 return row['resort_name'].toLowerCase().replace(/ /g,'')
+	  // });
+		let resorts = res.rows;
+	  for (var i = 0; i < resorts.length; i++) {
+			let singleResortName = resorts[i].resort_name.toLowerCase().replace(/ /g,'');
+			// console.log(singleResortName);
+			resObj = {};
+			// console.log("single resort...: ", superObj);
+			resObj.resortName = singleResortName;
+	    resObj.threeDayTotal = Math.round(resorts[i].pastSnow.sum3/2.54 || 0);
+	    resObj.lastDayTotal = Math.round(resorts[i].pastSnow.snow0day/2.54);
+	    resObj.liftNum =  (resorts[i].snowcone.lifts_open === null) ? 0 :
+												 resorts[i].snowcone.lifts_open;
+	    resObj.liftTotal = resorts[i].resortProfile.num_lifts;
+	    resObj.baseDepth = Math.round(resorts[i].snowcone.base_depth_cm/2.54);
+	    resObj.topDepth = Math.round(resorts[i].snowcone.top_depth_cm/2.54);
+			superObj.push(resObj);
+	  	}
+		console.log("state being saved...");
+		saveState();
+		// getState();
 		// findResort();
 	};
 
@@ -115,6 +122,7 @@ bot.on('message', function(message) {
 	}
 
 	function getState() {
+
 		fs.readFile('snowData-state.json', 'utf8', function(err, data) {
 			if (err) throw err;
 			let myObj = JSON.parse(data);
@@ -148,12 +156,28 @@ Type ** !snow resorts ** or ** !resorts ** to see the list of resort commands \n
 	}
 
 	try {
+
 		if (command === 'snow') {
-			let snowData = getState();
-			bot.commands.get(command).execute(message, args, snowData);
+			const getFSData = async () => {
+				var snow = require('./snowData-state.json');
+				let resorts = snow.filter((obj) => {
+					console.log("args... ", args[0]);
+					console.log("selection... ", selection);
+					console.log("snow objects ", obj);
+					return (selection == obj.resortName)
+				});
+				const snowData = await resorts[0];
+				const mess = await bot.commands.get(command).execute(message, args, snowData)
+				return mess;
+				};
+
+				getFSData();
+
+
 		} else {
 			bot.commands.get(command).execute(message, args);
 		}
+
 	}
 	catch (error) {
 		console.error(error);
