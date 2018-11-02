@@ -4,11 +4,11 @@ require('dotenv').load();
 
 // const request = require('request');
 // const FP = require('functional-promise');
+
 const fs = require('fs');
 const Datastore = require('nedb');
 const fetch = require('node-fetch');
 const TOKEN = process.env.TOKEN;
-const accountId = process.env.ACCOUNT_ID;
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -73,7 +73,8 @@ bot.on('message', function(message) {
 			superObj.push(resObj);
 	  }
 		console.log("state being saved...");
-		saveState();
+		// saveState();
+		return superObj;
 	};
 
 	function saveState() {
@@ -107,7 +108,7 @@ Type ** !snow resorts ** or ** !resorts ** to see the list of resort commands \n
 		if (command === 'snow' && args[0].toLowerCase() != 'all') {
 			selection = args[0].toLowerCase();
 			const getFSData = async () => {
-				var snow = require('./snowData-state.json');
+				const snow = require('./snowData-state.json');
 				let resorts = snow.filter((obj) => {
 						console.log(obj.resortName);
 						return obj.resortName.includes(selection);
@@ -122,11 +123,9 @@ Type ** !snow resorts ** or ** !resorts ** to see the list of resort commands \n
 		} else if (command === 'snow' && args[0].toLowerCase() == 'all') {
 			selection = args[0].toLowerCase();
 			const getFSData = async () => {
-				var snow = require('./snowData-state.json');
+				const snow = require('./snowData-state.json');
 				const snowData = await snow;
-				// console.log("input: ", selection);
-				// console.log(snowData);
-				const mess = await bot.commands.get(command).execute(message, args, snowData)
+				const mess = await bot.commands.get(command).execute(message, args, snowData);
 				return mess;
 				};
 			getFSData();
