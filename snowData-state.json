@@ -1,12 +1,12 @@
 [
     {
         "resortName": "arapahoebasinskiarea",
-        "threeDayTotal": 7,
-        "lastDayTotal": 2,
+        "threeDayTotal": 11,
+        "lastDayTotal": 5,
         "liftNum": 1,
         "liftTotal": 9,
-        "baseDepth": 18,
-        "topDepth": 18
+        "baseDepth": 21,
+        "topDepth": 21
     },
     {
         "resortName": "aspen/snowmass",
@@ -37,7 +37,7 @@
     },
     {
         "resortName": "cooper",
-        "threeDayTotal": 4,
+        "threeDayTotal": 0,
         "lastDayTotal": 0,
         "liftNum": 0,
         "liftTotal": 4,
@@ -100,12 +100,12 @@
     },
     {
         "resortName": "loveland",
-        "threeDayTotal": 9,
-        "lastDayTotal": 4,
+        "threeDayTotal": 18,
+        "lastDayTotal": 11,
         "liftNum": 1,
         "liftTotal": 11,
-        "baseDepth": 18,
-        "topDepth": 18
+        "baseDepth": 26,
+        "topDepth": 26
     },
     {
         "resortName": "monarchmountain",
@@ -199,11 +199,11 @@
     },
     {
         "resortName": "wolfcreekskiarea",
-        "threeDayTotal": 16,
+        "threeDayTotal": 2,
         "lastDayTotal": 0,
-        "liftNum": 6,
+        "liftNum": 7,
         "liftTotal": 10,
-        "baseDepth": 31,
-        "topDepth": 34
+        "baseDepth": 28,
+        "topDepth": 31
     }
 ]

@@ -3,8 +3,6 @@ console.log("____ Bot is running ____");
 require('dotenv').load();
 
 // const request = require('request');
-// const FP = require('functional-promise');
-
 const fs = require('fs');
 const Datastore = require('nedb');
 const fetch = require('node-fetch');
@@ -45,10 +43,12 @@ bot.on('message', function(message) {
   var superObj = [];
   var selection;
 
-  if (command == "snow") {
-    selection = args[0].toLowerCase();
-    // fetchSnowData();
-  };
+  // if (command == "snow") {
+  //   selection = args[0].toLowerCase();
+  //   // fetchSnowData();
+  // };
+
+	// fetchSnowData();
 
   function fetchSnowData() {
     console.log("fetching snow data...");
@@ -73,8 +73,8 @@ bot.on('message', function(message) {
       resObj.topDepth = Math.round(resorts[i].snowcone.top_depth_cm / 2.54);
       superObj.push(resObj);
     }
-    console.log("state being saved...");
-    // saveState();
+    // console.log("state being saved...");
+    saveState();
     return superObj;
   };
 
@@ -92,6 +92,8 @@ bot.on('message', function(message) {
       return myObj;
     })
   }
+
+	// console.log("[[[state]]] ", getState());
 
   if (command.args && !args.length) {
     return message.channel.send(
